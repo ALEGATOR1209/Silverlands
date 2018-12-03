@@ -1,0 +1,378 @@
+ideas = {
+	country = {
+		angry_wyjko = {
+			picture = idea_angry_wyjko
+			modifier = {
+				stability_factor = -0.15
+				consumer_goods_factor = 0.05
+				conscription = -0.1
+			}
+		}
+		silverland = {
+			picture = idea_silverland
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				NOT = {
+					has_government = communism
+				}
+			}
+
+			removal_cost = -1
+			
+			modifier = {
+				army_morale_factor = 0.33
+				attrition = -0.15
+				army_core_attack_factor = 0.25
+				army_core_defence_factor = 0.25
+				conscription = 0.05
+			}
+		}
+		partisans = {
+			picture = generic_manpower_bonus
+	
+			modifier = {
+				conscription = 0.05
+				enemy_partisan_effect = -0.1
+			}		
+		}
+	}
+	
+	political_advisor = {
+		# POLITICAL	
+		ivan_turyanytsa = {
+			
+			allowed = {
+				tag = CUR
+			}
+			
+			traits = { communist_revolutionary }
+	
+			on_add = {
+				country_event = political.1
+			}
+	
+			do_effect = {
+				NOT = {
+					has_government = communism
+				}
+			}
+	
+			ai_will_do = {
+				factor = 0
+			}
+		}
+			
+		avgustin_voloshin = {
+			
+			allowed = {
+				tag = CUR
+			}
+			
+			traits = { democratic_reformer }
+	
+			on_add = {
+				country_event = political.13
+			}
+	
+			do_effect = {
+				NOT = {
+					has_government = democratic
+				}
+			}
+	
+			ai_will_do = {
+				factor = 0
+			}
+		}
+		
+		cur_fascist_demagogue = {
+			
+			allowed = {
+				tag = CUR
+			}
+			
+			traits = { fascist_demagogue }
+	
+			on_add = {
+				country_event = political.7
+			}
+	
+			do_effect = {
+				NOT = {
+					has_government = fascism
+				}
+			}
+	
+			ai_will_do = {
+				factor = 0
+			}
+		}
+	}
+	tank_manufacturer = {
+		designer = yes
+		cur_tank_manufacturer = {
+			picture = generic_tank_manufacturer_1
+			allowed = {
+				original_tag = CUR
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			
+			research_bonus = {
+				armor = 0.15
+			}
+			
+			traits = { fast_tank_manufacturer }
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	naval_manufacturer = { 
+		
+		designer = yes
+		
+		cur_naval_manufacturer = {
+			picture = generic_naval_manufacturer_1
+			allowed = {
+				original_tag = CUR
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			research_bonus = {
+				naval_equipment = 0.10
+			}
+			
+			traits = { naval_manufacturer }
+		}
+	}
+	aircraft_manufacturer = { 
+			
+		designer = yes
+		
+		cur_aircraft_manufacturer = {
+			picture = generic_air_manufacturer_1
+			allowed = {
+				original_tag = CUR
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			research_bonus = {
+				air_equipment = 0.20
+			}
+			
+			traits = { light_aircraft_manufacturer }
+			
+			equipment_bonus = {
+				
+			}
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		cur_medium_aircraft_manufacturer = { 
+			picture = generic_air_manufacturer_3
+			allowed = {
+				original_tag = CUR
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+						
+			research_bonus = {
+				air_equipment = 0.10
+			}
+			
+			traits = { medium_aircraft_manufacturer }
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		
+		cur_heavy_aircraft_manufacturer = {
+			picture = generic_air_manufacturer_2
+			allowed = {
+				original_tag = CUR
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}	
+			
+			research_bonus = {
+				air_equipment = 0.10
+			}
+			
+			traits = { heavy_aircraft_manufacturer }
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	industrial_concern = {
+		cur_industrial_concern = {
+			picture = generic_industrial_concern_1
+			allowed = {
+				original_tag = CUR
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			research_bonus = {
+				industry = 0.10
+				
+			}
+			
+			traits = { industrial_concern }
+		}
+
+		cur_electronics_concern = {
+			picture = generic_electronics_concern_1
+			allowed = {
+				original_tag = CUR
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			
+			research_bonus = {
+				electronics = 0.10
+			}
+			
+			traits = { electronics_concern }
+		}
+	}
+	materiel_manufacturer = {
+		designer = yes
+		cur_artillery_manufacturer = {
+			picture = generic_artillery_manufacturer_2
+			allowed = {
+				original_tag = CUR
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			
+			research_bonus = {
+				artillery = 0.10
+			}
+			
+			traits = { artillery_manufacturer }
+			
+			modifier = {
+				# +10% arty/at/aa research speed
+			}
+		}
+		
+		cur_infantry_equipment_manufacturer = {
+			picture = generic_infantry_equipment_manufacturer_2
+
+			allowed = {
+				original_tag = CUR
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			
+			research_bonus = {
+				infantry_weapons = 0.10
+			}
+			
+			traits = { infantry_equipment_manufacturer }
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		
+		cur_motorized_equipment_manufacturer = {
+			picture = generic_motorized_equipment_manufacturer_3
+			allowed = {
+				original_tag = CUR
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			
+			research_bonus = {
+				motorized_equipment = 0.10
+			}
+			
+			traits = { motorized_equipment_manufacturer }
+		}
+	}
+	army_chief = {
+		
+		cur_army_chief_off = {
+			
+			allowed = {
+				original_tag = CUR	
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			
+			traits = { army_chief_offensive_1 }
+		}
+
+		cur_army_chief_def = {
+			
+			allowed = {
+				original_tag = CUR	
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			
+			traits = { army_chief_defensive_1 }
+		}
+	}
+	high_command = {
+		cur_army_art = {
+			allowed = {
+				original_tag = CUR	
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			
+			traits = { army_artillery_1 }			
+		}
+		
+		cur_army_log = {
+			allowed = {
+				original_tag = CUR	
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			
+			traits = { army_logistics_2 }			
+		}
+	}
+	theorist = {
+		cur_military_theorist = {
+			allowed = {
+				original_tag = CUR	
+			}
+			available = {
+				has_completed_focus = CUR_militum
+			}
+			
+			research_bonus = {
+				land_doctrine = 0.07
+			}
+			
+			traits = { military_theorist }
+		}
+	}
+}

@@ -1,0 +1,178 @@
+﻿#######################
+# Carpatian Ukraine
+#######################
+
+add_namespace = ukrnews
+news_event = { #German protectorat in Carpatian Rus
+	id = ukrnews.1
+	title = ukrnews.1.t
+	desc = ukrnews.1.d
+	picture = GFX_hust_news_event_001
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.1.a
+	}
+}
+news_event = { 
+	id = ukrnews.2
+	title = ukrnews.2.t
+	desc = ukrnews.2.d
+	picture = GFX_hust_news_event_002
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.2.a
+	}
+}
+
+news_event = { 
+	id = ukrnews.3
+	title = ukrnews.3.t
+	desc = ukrnews.3.d
+	picture = GFX_hust_news_event_003
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.3.a
+	}
+}
+
+news_event = { 
+	id = ukrnews.4
+	title = ukrnews.4.t
+	desc = ukrnews.4.d
+	picture = GFX_hust_news_event_003
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.4.a
+	}
+}
+
+news_event = { 
+	id = ukrnews.5
+	title = ukrnews.5.t
+	desc = ukrnews.5.d
+	picture = GFX_hust_news_event_005
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.5.a
+	}
+}
+
+news_event = { 
+	id = ukrnews.6
+	title = ukrnews.6.t
+	desc = ukrnews.6.d
+	picture = GFX_hust_news_event_005
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.6.a
+	}
+}
+
+news_event = { 
+	id = ukrnews.7
+	title = ukrnews.7.t
+	desc = ukrnews.7.d
+	picture = GFX_hust_news_event_006
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.7.a
+	}
+}
+news_event = { 
+	id = ukrnews.8
+	title = ukrnews.8.t
+	desc = ukrnews.8.d
+	picture = GFX_hust_news_event_006
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.7.a
+	}
+}
+news_event = { 
+	id = ukrnews.9
+	title = ukrnews.9.t
+	desc = ukrnews.9.d
+	picture = GFX_hust_news_event_006
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.7.a
+	}
+}
+news_event = { 
+	id = ukrnews.10
+	title = ukrnews.10.t
+	desc = ukrnews.10.d
+	picture = GFX_news_event_003
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.10.a
+	}
+}
+news_event = { 
+	id = ukrnews.11
+	title = ukrnews.11.t
+	desc = ukrnews.11.d
+	picture = GFX_news_event_hungarian_soldiers
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.11.a
+	}
+}
+news_event = { 
+	id = ukrnews.12
+	title = ukrnews.12.t
+	desc = ukrnews.12.d
+	picture = GFX_news_event_hungarian_soldiers
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.12.a
+	}
+}
+news_event = { 
+	id = ukrnews.13
+	title = ukrnews.13.t
+	desc = ukrnews.13.d
+	picture = GFX_news_event_hungary_refused
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.13.a
+	}
+}
+news_event = { 
+	id = ukrnews.14
+	title = ukrnews.14.t
+	desc = ukrnews.14.d
+	picture = GFX_hust_news_event_001
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ukrnews.14.a
+	}
+}

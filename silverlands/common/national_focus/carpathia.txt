@@ -1,0 +1,694 @@
+focus_tree = {
+	id = ukr_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = CUR
+		}
+	}
+	
+	focus = {
+		id = CUR_mountain_infrastructure
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 0
+		y = 0
+		cost = 15
+		ai_will_do = {
+			factor = 1
+		}
+		
+		completion_reward = {
+			73 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					add_building_construction = {
+						type = infrastructure
+						level = 5
+						instant_build = yes
+					}
+				}
+			}		
+		}
+	}
+
+	focus = {
+		id = CUR_factory
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = CUR_mountain_infrastructure }
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		
+		completion_reward = {
+			73 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CUR_army_factory
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = CUR_factory }
+		x = 0 
+		y = 2
+		cost = 8
+		ai_will_do = {
+			factor = 1
+		}
+		
+		completion_reward = {
+			73 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}	
+			}
+		}
+	}
+	
+	focus = {
+		id = CUR_forest
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = CUR_army_factory }
+		x = 0
+		y = 3
+		cost = 12
+		ai_will_do = {
+			factor = 1
+		}
+		
+		completion_reward = {
+			73 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = synthetic_refinery
+						level = 1
+						instant_build = yes
+					}
+					custom_effect_tooltip = CUR_krijvki
+					hidden_effect = {
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 3548
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 6571
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 9563
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 11536
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 11691
+							instant_build = yes
+						}
+					}
+				}	
+			}
+		}
+	}
+	
+	focus = {
+		id = CUR_plane
+		icon = GFX_goal_generic_air_fighter
+		x = 2
+		y = 0
+		cost = 4
+		ai_will_do = {
+			factor = 1
+		}
+		
+		completion_reward = {
+			air_experience = 50
+		}
+	}
+	
+	focus = {
+		id = CUR_airport
+		icon = GFX_goal_continuous_air_production
+		prerequisite = { focus = CUR_plane }
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		
+		completion_reward = {
+			73 = {
+				if = {
+					limit = { is_controlled_by = CUR }
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CUR_planes
+		icon = GFX_goal_generic_air_doctrine
+		x = 2
+		y = 2
+		prerequisite = { focus = CUR_airport }
+		cost = 5
+
+		available =
+		{
+			country_exists = GER
+			country_exists = ENG
+			country_exists = USA
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		completion_reward = {
+			GER = { country_event = { id = hust.8 days = 1 } }
+			ENG = { country_event = { id = hust.8 days = 1 } }
+			USA = { country_event = { id = hust.8 days = 1 } }
+		}
+	}
+	
+	focus = {
+		id = CUR_berkut
+		icon = GFX_goal_generic_build_airforce
+		x = 2
+		y = 3
+		prerequisite = { focus = CUR_planes }
+		cost = 10
+
+		available = {
+			73 = { is_controlled_by = CUR }
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			air_experience = 50
+			add_tech_bonus = {
+				name = air_doc_bonus
+				bonus = 0.5
+				uses = 2
+				category = air_doctrine
+			}
+			73 = {
+				if = {
+					limit = { is_controlled_by = CUR }
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CUR_indepence
+		icon = GFX_goal_generic_demand_territory
+		x = 6
+		y = 0
+		cost = 10
+		
+		available = {
+			73 = { is_controlled_by = CUR }
+		}
+		
+		bypass = { }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			add_political_power = 150
+			add_autonomy_ratio = {
+				value = 0.55
+				localization = CUR_propaganda
+			}
+		}
+	}
+	
+	focus = {
+		id = CUR_germania
+		icon = GFX_focus_chi_mission_to_germany
+		x = 4
+		y = 1
+		cost = 10
+		
+		prerequisite = { focus = CUR_indepence }
+		available = {
+			73 = { is_controlled_by = CUR }
+			NOT = { has_opinion_modifier = carpatian_indepence_h }
+		}
+		
+		bypass = { }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			add_political_power = 50
+			GER = { country_event = { id = hust.11 } }
+			add_popularity = { ideology = fascism popularity = 0.15 }
+			add_autonomy_ratio = {
+				value = 0.05
+				localization = CUR_gerpropaganda
+			}			
+		}
+	}
+	
+	focus = {
+		id = CUR_german_protectorate
+		icon = GFX_goal_generic_forceful_treaty
+		x = 4
+		y = 2
+		cost = 1 
+		
+		prerequisite = { focus = CUR_germania }
+		available = {
+			73 = { is_controlled_by = CUR }
+			has_opinion_modifier = carpatian_indepence_g
+		}
+		
+		bypass = { }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			add_popularity = { ideology = fascism popularity = 0.05 }
+			GER = { country_event = { id = hust.3 } }
+		}
+	}
+
+	focus = {
+		id = CUR_hungary
+		icon = GFX_focus_hun_assassinate_horthy
+		x = 6
+		y = 1
+		cost = 10
+		
+		prerequisite = { focus = CUR_indepence }
+		available = {
+			73 = { is_controlled_by = CUR }
+			NOT = { has_opinion_modifier = carpatian_indepence_g }
+		}
+		
+		bypass = { }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			add_political_power = 70
+			HUN = { country_event = { id = hust.12 } }
+			add_popularity = { ideology = fascism popularity = 0.10 }
+			CZE = {
+				set_country_flag = madyarons
+			}
+			add_autonomy_ratio = {
+				value = 0.25
+				localization = CUR_hunpropaganda
+			}
+		}
+	}
+	
+	focus = {
+		id = CUR_hungarian_protectorate
+		icon = GFX_focus_cur_hungarian_protectorate
+		x = 6
+		y = 2
+		cost = 1 
+		
+		prerequisite = { focus = CUR_hungary }
+		available = {
+			73 = { is_controlled_by = CUR }
+			has_opinion_modifier = carpatian_indepence_h
+		}
+		
+		bypass = { }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			add_popularity = { ideology = fascism popularity = 0.15 }
+			HUN = { country_event = { id = hust.4 } }
+		}
+	}
+	
+	focus = {
+		id = CUR_carp_ind
+		icon = GFX_hust_ukraine
+		x = 8
+		y = 1
+		cost = 10
+		
+		prerequisite = { focus = CUR_indepence }
+		available = {
+			73 = { is_controlled_by = CUR }
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			add_popularity = { ideology = democratic popularity = 0.15 }
+			add_autonomy_ratio = {
+				value = 0.35
+				localization = CUR_propaganda
+			}
+		}
+	}
+	
+	focus = {
+		id = CUR_ideology
+		icon = GFX_goal_continuous_increase_nu
+		x = 8
+		y = 2
+		cost = 4
+		
+		prerequisite = { focus = CUR_carp_ind }
+		available = {
+			73 = { is_controlled_by = CUR }
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			add_stability = 0.20
+			country_event = { id = hust.13 } 
+		}
+	}
+	
+	focus = {
+		id = CUR_hammer
+		icon = GFX_goal_generic_territory_or_war
+		x = 8
+		y = 3
+		cost = 10
+		
+		prerequisite = { focus = CUR_ideology }
+		available = {
+			73 = { is_controlled_by = CUR }
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			add_stability = 0.10
+			add_ideas = silverland
+			add_political_power = 200
+			air_experience = 50
+			army_experience = 50
+			navy_experience = 50
+		}
+	}
+	
+	focus = {
+		id = CUR_sich
+		icon = GFX_focus_cur_sich
+		x = 10
+		y = 0
+		cost = 4
+		
+		available = {
+			73 = { is_controlled_by = CUR }
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			army_experience = 50
+			navy_experience = 50
+			air_experience = 50
+			custom_effect_tooltip = CUR_Sichoob
+			hidden_effect = {
+				load_oob = "CUR_CarpathianSich"
+			}
+		}
+	}
+	
+	focus = {
+		id = CUR_oun
+		icon = GFX_focus_generic_military_mission
+		x = 10
+		y = 1
+		cost = 10
+		prerequisite = { focus = CUR_sich }
+		
+		available = {
+			73 = { is_controlled_by = CUR } 
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			army_experience = 20
+			73 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes		
+				}
+			}
+			hidden_effect = { 73 = { add_manpower = 3000 } }
+			custom_effect_tooltip = CUR_oun_effect
+		}
+	}
+	
+	focus = {
+		id = CUR_mnth
+		icon = GFX_focus_secret_rearmament
+		x = 10
+		y = 2
+		cost = 5
+		prerequisite = { focus = CUR_oun }
+		available = {
+			73 = { is_controlled_by = CUR } 
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			hidden_effect = {
+				load_oob = "CUR_mnth"
+			}
+			custom_effect_tooltip = CUR_mnth_effect
+			add_ideas = partisans
+		}
+	}
+	
+	focus = {
+		id = CUR_par
+		icon = GFX_goal_generic_fortify_city
+		x = 10
+		y = 3
+		prerequisite = { focus = CUR_mnth }
+		cost = 10
+		available = {
+			73 = { is_controlled_by = CUR } 
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			custom_effect_tooltip = CUR_krijvki
+			hidden_effect = {
+			73 = {
+				add_building_construction = {
+						type = bunker
+						level = 1
+						province = 3548
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1
+						province = 6571
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1
+						province = 9563
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1
+						province = 11536
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1
+						province = 11691
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CUR_militum
+		icon = GFX_focus_cur_militum
+		x = 10
+		y = 4
+		prerequisite = { focus = CUR_par }
+		cost = 10
+		available = {
+			73 = { is_controlled_by = CUR } 
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			set_country_flag = carpatia_militum
+			custom_effect_tooltip = car_mil
+		}
+	}
+	
+	focus = {
+		id = CUR_galitia
+		icon = GFX_goal_anschluss
+		x = 12
+		y = 0
+		cost = 10
+		available = {
+			73 = { is_controlled_by = CUR }
+			is_puppet = no
+			has_army_manpower = { size > 39999 }
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		bypass = {
+			89 = {
+				is_controlled_by = CUR
+				is_owned_by = CUR
+			}
+			91 = {
+				is_controlled_by = CUR
+				is_owned_by = CUR
+			}
+			93 = {
+				is_controlled_by = CUR
+				is_owned_by = CUR
+			}
+		}
+		completion_reward = {
+			country_event = { id = hust.14 } 
+			add_war_support = 0.15
+		}
+	}
+	
+	focus = {
+		id = CUR_zluka
+		icon = GFX_goal_continuous_increase_nu
+		x = 12
+		y = 1
+		cost = 10
+		prerequisite = { focus = CUR_galitia }
+		available = {
+			89 = {
+				is_controlled_by = CUR
+				is_owned_by = CUR
+			}
+			91 = {
+				is_controlled_by = CUR
+				is_owned_by = CUR
+			}
+			93 = {
+				is_controlled_by = CUR
+				is_owned_by = CUR
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_stability = 0.25
+			set_cosmetic_tag = CUR_GAL
+			add_state_core = 89
+			add_state_core = 91
+			add_state_core = 93
+			set_capital = 91
+		}
+	}
+}

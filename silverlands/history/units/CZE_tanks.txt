@@ -1,0 +1,15 @@
+division_template = {
+	name = "Tankovyi Batalion"
+
+	regiments = {
+		light_armor = { x = 0 y = 0 }
+	}
+}
+
+units = {
+	division = {
+		name = "Carpatskyi Tankovyi Batalion"
+		location = 3548 #Khust
+		division_template = "Tankovyi Batalion"
+	}
+}

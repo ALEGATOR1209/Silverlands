@@ -1,0 +1,65 @@
+division_template = {
+	name = "Ukrainian Rebels"
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+	}
+}
+
+units = {
+	division = {
+		name = "Ukrainian Rebels"
+		location = 438
+		division_template = "Ukrainian Rebels"
+	}
+	division = {
+		name = "Ukrainian Rebels"
+		location = 491
+		division_template = "Ukrainian Rebels"
+	}
+	division = {
+		name = "Ukrainian Rebels"
+		location = 536
+		division_template = "Ukrainian Rebels"
+	}
+	division = {
+		name = "Ukrainian Rebels"
+		location = 3483
+		division_template = "Ukrainian Rebels"
+	}
+	division = {
+		name = "Ukrainian Rebels"
+		location = 3562
+		division_template = "Ukrainian Rebels"
+	}
+	division = {
+		name = "Ukrainian Rebels"
+		location = 9454
+		division_template = "Ukrainian Rebels"
+	}
+	division = {
+		name = "Ukrainian Rebels"
+		location = 9468 
+		division_template = "Ukrainian Rebels"
+	}
+	division = {
+		name = "Ukrainian Rebels"
+		location = 9558
+		division_template = "Ukrainian Rebels"
+	}
+	division = {
+		name = "Ukrainian Rebels"
+		location = 11427
+		division_template = "Ukrainian Rebels"
+	}
+	division = {
+		name = "Ukrainian Rebels"
+		location = 11479
+		division_template = "Ukrainian Rebels"
+	}
+}

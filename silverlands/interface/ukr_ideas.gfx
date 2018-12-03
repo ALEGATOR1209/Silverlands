@@ -1,0 +1,10 @@
+spriteTypes = {	
+	spriteType = {
+		name = "GFX_idea_silverland"
+		texturefile = "gfx/interface/ideas/idea_silverland.dds"
+	}		
+	spriteType = {
+		name = "GFX_idea_angry_wyjko"
+		texturefile = "gfx/interface/ideas/idea_angry_wyjko.dds"
+	}
+}

@@ -1,0 +1,66 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_report_event_carpatian_elections"
+		texturefile = "gfx/event_pictures/report_event_carpatian_elections.dds"
+	}		
+	spriteType = {
+		name = "GFX_report_event_carpatian_autonomy"
+		texturefile = "gfx/event_pictures/report_event_carpatian_autonomy.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_carpatian_indepence"
+		texturefile = "gfx/event_pictures/report_event_carpatian_indepence.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_carpatian_german_protectorat"
+		texturefile = "gfx/event_pictures/report_event_carpatian_german_protectorat.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_carpatian_hungarian_protectorat"
+		texturefile = "gfx/event_pictures/report_event_carpatian_hungarian_protectorat.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_carphatia_galitia"
+		texturefile = "gfx/event_pictures/report_event_carphatia_galitia.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_czetank"
+		texturefile = "gfx/event_pictures/report_event_czetank.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_czech_army"
+		texturefile = "gfx/event_pictures/report_event_czech_army.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_czeczetank"
+		texturefile = "gfx/event_pictures/report_event_czeczetank.dds"
+	}
+	spriteType = {
+		name = "GFX_hust_news_event_001"
+		texturefile = "gfx/event_pictures/hust_news_event_001.dds"
+	}
+	spriteType = {
+		name = "GFX_hust_news_event_003"
+		texturefile = "gfx/event_pictures/hust_news_event_003.dds"
+	}
+	spriteType = {
+		name = "GFX_hust_news_event_005"
+		texturefile = "gfx/event_pictures/hust_news_event_005.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_madyarons"
+		texturefile = "gfx/event_pictures/report_event_madyarons.dds"
+	}
+	spriteType = {
+		name = "GFX_hust_news_event_002"
+		texturefile = "gfx/event_pictures/hust_news_event_002.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_carphatia_rebellion"
+		texturefile = "gfx/event_pictures/report_event_carphatia_rebellion.dds"
+	}
+	spriteType = {
+		name = "GFX_hust_news_event_006"
+		texturefile = "gfx/event_pictures/hust_news_event_006.dds"
+	}
+}	

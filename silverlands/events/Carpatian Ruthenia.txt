@@ -1,0 +1,1037 @@
+﻿#######################
+# Carpatian Ukraine
+#######################
+
+add_namespace = hust
+
+#Autonomy (Germany annex Sudatenland)
+country_event = {
+	id = hust.1
+	title = hust.1.t
+	desc = hust.1.d
+	picture = GFX_report_event_carpatian_autonomy
+	
+	trigger = {
+		OR = {
+			69 = { is_owned_by = GER }
+			AND = {
+				CZE = { has_war_with = GER }
+				69 = { is_controlled_by = GER }
+			}
+		}
+		tag = CZE
+		NOT = {
+			has_idea = angry_wyjko
+			country_exists = CUR
+		}
+	}
+	
+	mean_time_to_happen = { days = 50 }
+	
+	option = { #Autonomy of the Zakarpattya
+		name = hust.1.a
+		ai_chance = { factor = 65 }
+		hidden_effect = {
+			CUR = { transfer_state = 73 }
+			CZE = { puppet = CUR }
+			set_autonomy = {
+				target = CUR
+				autonomous_state = autonomy_integrated_puppet
+			}
+		}
+		custom_effect_tooltip = hust.1.tt
+	}
+	
+	option = { #Refuse autonomy
+		name = hust.1.b
+		add_timed_idea = { idea = angry_wyjko days = 30 }
+		add_political_power = -50
+	}
+	
+	option = {
+		name =  hust.1.c
+		trigger = { is_ai = no }
+		hidden_effect = {
+			CUR = { transfer_state = 73 }
+			CZE = { puppet = CUR }
+			set_autonomy = {
+				target = CUR
+				autonomous_state = autonomy_integrated_puppet
+			}
+		}
+		custom_effect_tooltip = hust.1.tt1
+		CUR = { change_tag_from = CZE }
+	}
+}
+
+#Indepence (Germany annex Czehoslovakia)
+country_event = {
+	id = hust.2
+	title = hust.2.t
+	desc = hust.2.d
+	picture = GFX_report_event_carpatian_indepence
+	
+	trigger = {
+		OR = {
+			NOT = { 9 = { is_controlled_by = CZE } }
+			GER = { has_war_with = CZE }
+		}
+		country_exists = GER
+		country_exists = HUN
+		tag = CUR
+		OR = { is_puppet_of = CZE CZE = { has_war_with = GER } }
+	}
+	
+	mean_time_to_happen = {
+		days = 2
+	}
+	
+	option = { #Declare Indepence
+		name = hust.2.a
+		ai_chance = { factor = 30 }
+		hidden_effect = {
+			CZE = { 
+				end_puppet = CUR 
+				create_wargoal = {
+					type = annex_everything
+					target = CUR
+				}
+			}
+			GER = { country_event = { hours = 3 id = hust.5 } }
+		}
+		custom_effect_tooltip = hust.2.a.tt
+	}
+	
+	option = { #German protectorate
+		name = hust.2.b
+		hidden_effect = {
+			CZE = { 
+				end_puppet = CUR 
+				create_wargoal = {
+					type = annex_everything
+					target = CUR
+				}
+			}
+			GER = {
+				country_event = { hours = 3 id = hust.3 }
+			}
+		}
+		custom_effect_tooltip = hust.2.b.tt
+	}
+	
+	option = { #Hungarian protectorat
+		name = hust.2.c
+		hidden_effect = {
+			CZE = { 
+				end_puppet = CUR 
+				create_wargoal = {
+					type = annex_everything
+					target = CUR
+				}
+			}
+			HUN = {
+				country_event = { hours = 3 id = hust.4 }
+			}
+		}
+		custom_effect_tooltip = hust.2.c.tt
+	}
+	
+}
+
+country_event = { #German protectorate
+	id = hust.3
+	title = hust.3.t
+	desc = hust.3.d
+	picture = GFX_report_event_carpatian_german_protectorat
+
+	is_triggered_only = yes
+	
+	option = { #Accept suggestion
+		name = hust.3.a
+		ai_chance = { factor = 25 }
+		GER = { puppet = CUR }
+		set_autonomy = {
+			target = CUR
+			autonomous_state = autonomy_reichsprotectorate
+		}
+		news_event = { hours = 2 id = ukrnews.1 }
+	}
+	
+	option = { #Refuse
+		name = hust.3.b
+		if = {
+			limit = { 		
+				OR = {
+					9 = { is_controlled_by = GER }
+					GER = { has_war_with = CZE }
+				}
+			}
+			GER = {
+				create_wargoal = {
+					type = annex_everything
+					target = CUR
+				}
+			}
+		}
+		CUR = { country_event = { hours = 3 id = ukrnews.10 }}
+	}
+	
+	option = { #this is Hungarian lands
+		name = hust.3.c
+		ai_chance = { factor = 40 }
+		HUN = {
+			country_event = { hours = 3 id = hust.4 }
+		}
+		CUR = { country_event = { hours = 3 id = ukrnews.11 } }
+	}
+}
+
+country_event = {
+	id = hust.4
+	title = hust.3.t
+	desc = hust.4.d
+	picture = GFX_report_event_carpatian_hungarian_protectorat
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hust.4.a
+		ai_chance = { 	
+			factor = 10
+			modifier = {
+				factor = 20
+				tag = CUR
+				has_country_leader = { name = "Andrej Brodi" }
+			}
+			modifier = {
+				factor = 20
+				tag = CUR
+				has_opinion_modifier = madyarons
+			}			
+		}
+		HUN = { puppet = CUR }
+		set_autonomy = {
+			target = CUR
+			autonomous_state = autonomy_satellite
+		}
+		CUR = { country_event = { hours = 2 id = ukrnews.12 }} 
+		if = {
+			limit = { CUR = { NOT = { has_country_flag = Brodi_killed } } }
+			create_country_leader = {
+				name = "Andrej Brodi"
+				desc = "POLITICS_Andrej_Brodi_DESC"
+				picture = "Brodi_Andrej.dds"
+				expire = "1965.1.1"
+				ideology = rexism
+			}
+			set_party_name = { 
+				ideology = fascism 
+				long_name = CUR_fascism_party 
+				name = CUR_fascism_party
+			}
+		}
+	}
+	
+	option = {
+		name = hust.4.b
+		HUN = {
+			create_wargoal = {
+				type = annex_everything
+				target = CUR
+			}
+		}
+		CUR = { country_event = { hours = 2 id = ukrnews.13 }}
+	}
+}
+
+country_event = {
+	id = hust.5
+	title = hust.5.t
+	desc = hust.5.d
+	picture = GFX_report_event_carpatian_german_protectorat
+
+	is_triggered_only = yes
+	
+	option = { 
+		name = hust.5.a
+		CUR = {
+			add_opinion_modifier = { target = GER modifier = cur_indepence }
+		}
+		GER = { give_guarantee = CUR }
+		news_event = { hours = 3 id = ukrnews.14  }
+	}
+	
+	option = { #Refuse
+		name = hust.5.b
+		ai_chance = { factor = 60 }
+		if = {
+			limit = {
+				OR = {
+					GER = { has_war_with = CZE }
+					9 = { is_controlled_by = GER }
+				}
+			}
+			GER = {
+				create_wargoal = {
+					type = annex_everything
+					target = CUR
+				}
+			}
+		}
+		CUR = { country_event = { id = ukrnews.10 hours = 2 } }
+	}
+	
+	option = { #this is Hungarian lands
+		name = hust.5.c
+		HUN = {
+			country_event = { hours = 3 id = hust.4 }
+		}	
+		CUR = { country_event = { id = ukrnews.11 hours = 3 } }
+	}
+}
+
+country_event = {
+	id = hust.6
+	title = hust.6.t
+	desc = hust.6.d
+	
+	picture = GFX_report_event_madyarons
+	
+	trigger = {
+		tag = CUR
+		has_country_leader = { name = "Andrej Brodi" }
+		NOT = { has_opinion_modifier = madyarons }
+		CUR = { is_puppet_of = CZE }
+	}
+	
+	mean_time_to_happen = { days = 100 }
+	
+	option = { 
+		name = hust.6.a
+		HUN = {
+			add_opinion_modifier = { target = CUR modifier = madyarons }
+		}
+		CUR = {
+			add_opinion_modifier = { target = HUN modifier = madyarons }
+		}
+		CZE = {
+			set_country_flag = madyarons
+		}
+		add_stability = -0.10
+	}
+	
+	option = {
+		name = hust.6.b
+		add_stability = -0.05
+		custom_effect_tooltip = hust.6.tt
+	}
+}
+
+country_event = {
+	id = hust.7
+	title = hust.7.t
+	desc = hust.7.d 
+	
+	picture = GFX_report_event_madyarons
+	
+	trigger = {
+		tag = CZE
+		CUR = { is_puppet_of = CZE }
+		has_country_flag = madyarons
+	}
+	
+	mean_time_to_happen = { days = 30 }
+	
+	option = {
+		name = hust.7.a
+		ai_chance = { factor = 55 }
+		CUR = {
+			retire_country_leader = yes
+			set_party_name = { 
+				ideology = democratic 
+				long_name = CUR_Ukrainian_National_Union 
+				name = CUR_UNO 
+			}
+			create_country_leader = {
+				name = "Avgustyn Voloshyn"
+				desc = "POLITICS_Avgustyn_Voloshyn_DESC"
+				picture = "Avgustyn_Voloshyn.dds"
+				expire = "1965.1.1"
+				ideology = conservatism
+			}
+			news_event = { hours = 1 id = ukrnews.2 }
+		}
+		CZE = { clr_country_flag = madyarons }
+	}
+	option = {
+		name = hust.7.b
+		CUR = {	set_country_flag = hungarian_influence }
+	}
+}
+
+country_event = {
+	id = hust.8
+	title = hust.8.t
+	desc = hust.8.d
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hust.8.a
+		CUR = { 
+			country_event = { hours = 2 id = hust.9 }
+			add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 25 }
+		}
+		add_equipment_to_stockpile = { type = fighter_equipment_0 amount = -25 }
+	}
+	option = {
+		name = hust.8.b
+		CUR = { country_event = {hours = 2 id = hust.10} }
+	}
+}
+
+country_event = {
+	id = hust.9
+	title = hust.9.t
+	desc = hust.9.d
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hust.9.a
+	}
+}
+
+country_event = {
+	id = hust.10
+	title = hust.10.t
+	desc = hust.10.d
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hust.10.a
+	}
+}
+
+country_event = {
+	id = hust.11
+	title = hust.11.t
+	desc = hust.11.d
+	
+	picture = GFX_report_event_crowd_in_prague
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hust.11.a
+		ai_chance = { factor = 40 }
+		CUR = {
+			add_popularity = { ideology = fascism popularity = 0.25 }
+			add_autonomy_ratio = {
+				value = 0.15
+				localization = CUR_gerpropaganda
+			}
+			set_party_name = { 
+				ideology = fascism 
+				long_name = CUR_Organisation_of_Ukrainian_Nationalists 
+				name = CUR_OUN 
+			}
+			create_country_leader = {
+				name = "Yevhen Konovalets"
+				desc = "POLITICS_Yevhen_Konovalets_DESC"
+				picture = "Yevhen_Konovalets.dds"
+				expire = "1965.1.1"
+				ideology = rexism
+			}
+			add_opinion_modifier = { target = GER modifier = carpatian_indepence_g }
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 1000 producer = GER }
+			army_experience = 10
+			news_event = { hours = 1 id = ukrnews.3 }
+		}
+		add_opinion_modifier = { target = CUR modifier = carpatian_indepence_g }
+		add_equipment_to_stockpile = { type = infantry_equipment_0 amount = -1000 producer = GER }
+	}
+	option = {
+	 name = hust.11.b
+	 CUR = {
+			add_popularity = { ideology = fascism popularity = -0.05 }
+			news_event = { hours = 1 id = ukrnews.5 }
+	 }
+	}
+}
+country_event = {
+	id = hust.12
+	title = hust.12.t
+	desc = hust.12.d
+	
+	is_triggered_only = yes
+	
+	picture = GFX_report_event_crowd_in_prague
+	
+	option = {
+		name = hust.12.a
+		ai_chance = { factor = 65 }
+		CUR = {
+			add_popularity = { ideology = fascism popularity = 0.30 }
+			add_autonomy_ratio = {
+				value = 0.15
+				localization = CUR_hunpropaganda
+			}
+			create_country_leader = {
+				name = "Andrej Brodi"
+				desc = "POLITICS_Andrej_Brodi_DESC"
+				picture = "Brodi_Andrej.dds"
+				expire = "1965.1.1"
+				ideology = rexism
+			}
+			add_opinion_modifier = { target = HUN modifier = carpatian_indepence_h }
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 400 producer = HUN }
+			navy_experience = 25
+			news_event = { hours = 1 id = ukrnews.4 }
+		}
+		add_opinion_modifier = { target = CUR modifier = carpatian_indepence_h }
+		add_equipment_to_stockpile = { type = infantry_equipment_0 amount = -400 producer = HUN }
+	}
+	option = {
+	 name = hust.12.b
+	 CUR = {
+			add_popularity = { ideology = fascism popularity = -0.15 }
+			news_event = { hours = 1 id = ukrnews.6 }
+	 }
+	 CZE = { country_event = {hours = 2 id = hust.7} }
+	}
+}
+
+country_event = {
+	id = hust.13
+	title = hust.13.t
+	desc = hust.13.d
+	
+	is_triggered_only = yes
+	
+	picture = GFX_report_event_carpatian_elections
+	
+	option = {
+		ai_chance = { factor = 60 }
+		name = hust.13.a
+		if = { 
+			limit = { has_country_leader = { name = "Andrej Brodi" } }
+			retire_country_leader = yes
+			set_party_name = { 
+				ideology = democratic 
+				long_name = CUR_Ukrainian_National_Union 
+				name = CUR_UNO 
+			}
+			create_country_leader = {
+				name = "Avgustyn Voloshyn"
+				desc = "POLITICS_Avgustyn_Voloshyn_DESC"
+				picture = "Avgustyn_Voloshyn.dds"
+				expire = "1965.1.1"
+				ideology = conservatism
+			}
+			clr_country_flag = madyarons
+			clr_country_flag = hungarian_influence
+		}
+		set_politics = { ruling_party = democratic elections_allowed = yes }
+		add_popularity = { ideology = democratic popularity = 0.15 }
+	}
+	option = {
+		ai_chance = { factor = 10 }
+		name = hust.13.b
+		if = {
+			limit = { has_country_leader = { name = "Avgustyn Voloshyn" } }
+			retire_country_leader = yes
+			set_party_name = { 
+				ideology = democratic 
+				long_name = CUR_democratic_party 
+				name = CUR_democratic_party 
+			}
+			create_country_leader = {
+				name = "Andrej Brodi"
+				desc = "POLITICS_Avgustyn_Voloshyn_DESC"
+				picture = "Brodi_Andrej.dds"
+				expire = "1965.1.1"
+				ideology = conservatism
+			}
+			CZE = { set_country_flag = madyarons }
+			set_country_flag = hungarian_influence
+		}
+		set_politics = { ruling_party = democratic elections_allowed = no }
+		add_popularity = { ideology = democratic popularity = 0.10 }
+		add_popularity = { ideology = fascism popularity = 0.05 }
+		add_autonomy_ratio = {
+			value = 0.17
+		}
+		set_party_name = { 
+			ideology = fascism 
+			long_name = CUR_fascism_party 
+			name = CUR_fascism_party 
+		}
+		create_country_leader = {
+			name = "Andrej Brodi"
+			desc = "POLITICS_Avgustyn_Voloshyn_DESC"
+			picture = "Brodi_Andrej.dds"
+			expire = "1965.1.1"
+			ideology = rexism 
+		}
+	}
+	option = {
+		name = hust.13.c
+		trigger = { has_completed_focus = CUR_oun }
+		if = { 
+			limit = { has_country_leader = { name = "Andrej Brodi" } }
+			retire_country_leader = yes
+			set_party_name = { 
+				ideology = democratic 
+				long_name = CUR_Ukrainian_National_Union 
+				name = CUR_UNO 
+			}
+			create_country_leader = {
+				name = "Avgustyn Voloshyn"
+				desc = "POLITICS_Avgustyn_Voloshyn_DESC"
+				picture = "Avgustyn_Voloshyn.dds"
+				expire = "1965.1.1"
+				ideology = conservatism
+			}
+			clr_country_flag = madyarons
+			CZE = { clr_country_flag = madyarons }
+			clr_country_flag = hungarian_influence
+			add_autonomy_ratio = {
+				value = 0.18
+			}
+		}
+		set_politics = { ruling_party = democratic elections_allowed = yes }
+		add_popularity = { ideology = democratic popularity = 0.15 }
+		add_popularity = { ideology = fascism popularity = 0.15 }
+		add_autonomy_ratio = {
+			value = 0.15
+		}
+		set_party_name = { 
+			ideology = fascism 
+			long_name = CUR_Organisation_of_Ukrainian_Nationalists 
+			name = CUR_OUN 
+		}
+		create_country_leader = {
+			name = "Yevhen Konovalets"
+			desc = "POLITICS_Yevhen_Konovalets_DESC"
+			picture = "Yevhen_Konovalets.dds"
+			expire = "1965.1.1"
+			ideology = rexism
+		}
+	}
+}
+
+country_event = {
+	id = hust.14
+	title = hust.14.t
+	desc = hust.14.d
+	
+	is_triggered_only = yes
+	
+	picture = GFX_report_event_carphatia_galitia
+	
+	option = {
+		name = hust.14.a
+		add_state_claim = 89
+		add_state_claim = 91
+		add_state_claim = 93
+		every_other_country = { 
+			limit = {
+				OR = {
+					owns_state = 89 
+					owns_state = 91 
+					owns_state = 93
+				}
+			}
+			country_event = { id = hust.15 hours = 2 }
+		}
+	}
+}
+
+country_event = {
+	id = hust.15
+	title = hust.15.t
+	desc = hust.15.d
+	
+	is_triggered_only = yes
+	
+	picture = GFX_report_event_carphatia_galitia
+	
+	option = {
+		name = hust.15.a
+		ai_chance = { 
+			factor = 35 
+			modifier = {
+				factor = 20
+				tag = CUR
+				is_puppet = yes
+			}
+			modifier = {
+				factor = 20
+				tag = CUR
+				is_in_faction = yes
+			}
+			modifier = {
+				factor = -10
+				is_in_faction = yes
+			}
+			modifier = {
+				factor = -30
+				AND = {
+					has_opinion_modifier = MR_pact
+					has_government = communism
+				}
+			}
+		}
+		if = {
+			limit = { controls_state = 89 }
+			CUR = { country_event = { hours = 2 id = hust.22 } }
+		}
+		if = {
+			limit = { controls_state = 91 }
+			CUR = { country_event = { hours = 2 id = hust.23 } }
+		}
+		if = {
+			limit = { controls_state = 93 }
+			CUR = { country_event = { hours = 2 id = hust.24 } }
+		}
+	}
+	option = {
+		name = hust.15.b
+		if = {
+			limit = { controls_state = 89 }
+			CUR = { 
+				create_wargoal = {
+					type = take_state_focus
+					target = ROOT
+					generator = {89}
+				}
+			}
+		}
+		if = {
+			limit = { controls_state = 91 }
+			CUR = { 
+				create_wargoal = {
+					type = take_state_focus
+					target = ROOT
+					generator = {91}
+				}
+			}
+		}
+		if = {
+			limit = { controls_state = 93 }
+			CUR = { 
+				create_wargoal = {
+					type = take_state_focus
+					target = ROOT
+					generator = {93}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = hust.16
+	title = hust.16.t
+	desc = hust.16.d
+	
+	picture = GFX_report_event_madyarons
+	
+	trigger = {
+		tag = CUR
+		has_country_leader = { name = "Andrej Brodi" }
+		has_opinion_modifier = madyarons
+		CUR = { is_puppet_of = CZE }
+	}
+	
+	mean_time_to_happen = { days = 70 }
+	
+	option = { 
+		ai_chance = { 	
+			factor = 30
+			modifier = {
+				factor = 10
+				tag = CUR
+				has_country_leader = { name = "Andrej Brodi" }
+			}
+			modifier = {
+				factor = 10
+				tag = CUR
+				has_opinion_modifier = madyarons
+			}			
+		}
+		name = hust.16.a
+		CZE = { 
+			end_puppet = CUR 
+			create_wargoal = {
+				type = annex_everything
+				target = CUR
+			}
+			clr_country_flag = madyarons
+		}
+		HUN = { 
+			puppet = CUR
+			set_autonomy = {
+				target = CUR
+				autonomous_state = autonomy_satellite
+			}
+			add_opinion_modifier = { target = CUR modifier = carpatian_indepence_h }
+		}
+		add_opinion_modifier = { target = HUN modifier = carpatian_indepence_h }
+		add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 4000 producer = HUN }
+		add_stability = -0.20
+		hidden_effect = { 
+			create_country_leader = {
+				name = "Andrej Brodi"
+				desc = "POLITICS_Andrej_Brodi_DESC_DESC"
+				picture = "Brodi_Andrej.dds"
+				expire = "1965.1.1"
+				ideology = rexism
+			}
+		}
+	}
+	
+	option = {
+		name = hust.16.b
+		ai_chance = {
+			modifier = {
+				factor = 20
+				tag = CUR
+				has_completed_focus = CUR_oun
+			}
+		}
+		add_stability = -0.05
+		add_opinion_modifier = { target = HUN modifier = carpatian_inndepence_h}
+		CZE = { 
+			add_opinion_modifier = { target = HUN modifier = carpatian_inndepence_h } 
+			clr_country_flag = madyarons 
+		}
+		HUN = {
+			add_opinion_modifier = { target = CUR modifier = carpatian_inndepence_h }
+			add_opinion_modifier = { target = CZE modifier = carpatian_inndepence_h }
+		}
+	}
+}
+
+
+country_event = {
+	id = hust.17
+	title = hust.17.t
+	desc = hust.17.d
+	
+	picture = GFX_report_event_carphatia_rebellion
+	
+	trigger = {
+		AND = {
+			OR = {
+				owns_state = 89
+				owns_state = 91
+				owns_state = 93
+			}
+			has_war_with = CUR
+			OR = {
+				controls_state = 89
+				controls_state = 91
+				controls_state = 93
+			}
+		}
+		CUR = {
+			OR = {
+				has_completed_focus = CUR_galitia
+				has_completed_focus = CUR_oun
+			}
+		}
+		NOT = { has_country_flag = ukrainian_rebellion }
+	}
+	mean_time_to_happen = { days = 2 }
+	
+	option = {
+		name = hust.17.a
+		if = {
+			limit = {
+				controls_state = 89
+			}
+			hidden_effect = {
+				CUR = { 
+					load_oob = "CUR_89" 
+					country_event = ukrnews.7
+				}
+			}
+			custom_effect_tooltip = cur_rebellion_89
+		}
+		if = {
+			limit = {
+				controls_state = 91
+			}
+			hidden_effect = {
+				CUR = { 
+					load_oob = "CUR_91" 
+					country_event = ukrnews.8
+				}
+			}
+			custom_effect_tooltip = cur_rebellion_91
+		}
+		if = {
+			limit = {
+				controls_state = 93
+			}
+			hidden_effect = {
+				CUR = { 
+					load_oob = "CUR_93" 
+					country_event = ukrnews.9
+				}
+			}
+			custom_effect_tooltip = cur_rebellion_93
+		}
+		set_country_flag = ukrainian_rebellion
+	}
+}
+
+country_event = {
+	id = hust.18
+	title = hust.18.t
+	desc = hust.18.d 
+	
+	picture = GFX_report_event_madyarons
+	
+	trigger = {
+		tag = CUR
+		has_country_leader = { name = "Andrej Brodi" }
+		has_completed_focus = CUR_oun
+	}
+	
+	mean_time_to_happen = { days = 100 }
+	
+	option = {
+		name = hust.18.a
+		clr_country_flag = madyarons
+		kill_country_leader = yes
+		set_country_flag = Brodi_killed
+		set_party_name = { 
+			ideology = fascism 
+			long_name = CUR_Organisation_of_Ukrainian_Nationalists 
+			name = CUR_OUN 
+		}
+		create_country_leader = {
+			name = "Yevhen Konovalets"
+			desc = "POLITICS_Yevhen_Konovalets_DESC"
+			picture = "Yevhen_Konovalets.dds"
+			expire = "1965.1.1"
+			ideology = rexism
+		}
+	}
+}
+
+country_event = {
+	id = hust.19
+	title = hust.19.t
+	desc = hust.19.d
+	
+	picture = report_event_tanks_of_czeсh
+	
+	trigger = {
+		tag = CUR
+		OR = {
+			NOT = { country_exists =  CZE }
+			CZE = { has_war_with = GER }
+		}
+		has_completed_focus = CUR_sich
+		NOT = { has_country_flag = cze_tanks }
+	}
+	
+	mean_time_to_happen = { days = 2 }
+	
+	option = {
+		name = hust.19.a
+		random_list = {
+			60 = { country_event = { id = hust.20 hours = 4 } }
+			40 = { country_event = { id = hust.21 hours = 4 } }
+		}
+		custom_effect_tooltip = capture_cze_tanks
+		set_country_flag = cze_tanks
+	}
+	option = {
+		name = hust.19.b
+		set_country_flag = cze_tanks
+	}
+}
+
+country_event = {
+	id = hust.20
+	title = hust.20.t
+	desc = hust.20.d
+	
+	picture = report_event_czech_army
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hust.20.a
+		add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 2000 producer = CZE }
+		73 = { add_manpower = -300 }
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = hust.21
+	title = hust.21.t
+	desc = hust.21.d
+	
+	picture = GFX_report_event_czetank
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hust.21.a
+		add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 4000 producer = CZE }
+		hidden_effect = { load_oob = "CZE_tanks" }
+	}
+}
+
+country_event = {
+	id = hust.22
+	title = hust.22.t
+	desc = hust.22.d
+	
+	picture = GFX_report_event_german_polish_border
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hust.22.a
+		transfer_state = 89
+	}
+}
+
+country_event = {
+	id = hust.23
+	title = hust.23.t
+	desc = hust.23.d
+	
+	picture = GFX_report_event_german_polish_border
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hust.22.a
+		transfer_state = 91
+	}
+}
+
+country_event = {
+	id = hust.24
+	title = hust.24.t
+	desc = hust.24.d
+	
+	picture = GFX_report_event_german_polish_border
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hust.22.a
+		transfer_state = 93
+	}
+}

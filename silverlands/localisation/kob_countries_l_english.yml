@@ -1,0 +1,13 @@
+﻿l_english:
+ CUR_fascism:0 "Carpathian Ruthenia"
+ CUR_fascism_DEF:0 "Carpathian Ruthenia"
+ CUR_democratic:0 "Carpathian Ukraine"
+ CUR_democratic_DEF:0 "Carpathian Ukraine"
+ CUR_neutrality:0 "Carpathian Rus"
+ CUR_neutrality_DEF:0 "Carpathian Rus"
+ CUR_communism:0 "Carpathian SSR"
+ CUR_communism_DEF:0 "Carpathian SSR"
+ CUR_fascism_ADJ:0 "Ruthenian"
+ CUR_democratic_ADJ:0 "Carpathian"
+ CUR_neutrality_ADJ:0 "Rusian"
+ CUR_communism_ADJ:0 "Carpathian"

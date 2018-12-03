@@ -1,0 +1,27 @@
+﻿division_template = {
+	name = "Carpathian Sich Regiment"
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+	}
+}
+
+units = {
+	division = {
+		name = "1st Carpathian Sich Regiment"
+		location = 3548 #Khust
+		division_template = "Carpathian Sich Regiment"
+	}
+	division = {
+		name = "2nd Carpathian Sich Regiment"
+		location = 3548 #Khust
+		division_template = "Carpathian Sich Regiment"
+	}
+	division = {
+		name = "3rd Carpathian Sich Regiment"
+		location = 3548 #Khust
+		division_template = "Carpathian Sich Regiment"
+	}
+}
